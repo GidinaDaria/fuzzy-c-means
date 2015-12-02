@@ -7,12 +7,40 @@
   (major1) == 4 && (major2) <  8 || \
   (major1) == 4 && (major2) == 8 && (minor) <= 1)
 
+/* package bytestring-0.10.6.0 */
+#define VERSION_bytestring "0.10.6.0"
+#define MIN_VERSION_bytestring(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  10 || \
+  (major1) == 0 && (major2) == 10 && (minor) <= 6)
+
+/* package csv-conduit-0.6.6 */
+#define VERSION_csv_conduit "0.6.6"
+#define MIN_VERSION_csv_conduit(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  6 || \
+  (major1) == 0 && (major2) == 6 && (minor) <= 6)
+
+/* package optparse-applicative-0.12.0.0 */
+#define VERSION_optparse_applicative "0.12.0.0"
+#define MIN_VERSION_optparse_applicative(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  12 || \
+  (major1) == 0 && (major2) == 12 && (minor) <= 0)
+
 /* package random-1.1 */
 #define VERSION_random "1.1"
 #define MIN_VERSION_random(major1,major2,minor) (\
   (major1) <  1 || \
   (major1) == 1 && (major2) <  1 || \
   (major1) == 1 && (major2) == 1 && (minor) <= 0)
+
+/* package text-1.2.1.3 */
+#define VERSION_text "1.2.1.3"
+#define MIN_VERSION_text(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 1)
 
 /* package vector-0.11.0.0 */
 #define VERSION_vector "0.11.0.0"
@@ -91,5 +119,5 @@
   (major1) == 2 && (major2) <  22 || \
   (major1) == 2 && (major2) == 22 && (minor) <= 0)
 
-#define CURRENT_PACKAGE_KEY "Lab1_Gxk86EulS9aKQGqSOVawsN"
+#define CURRENT_PACKAGE_KEY "Lab1_68FgIzeT5bR9fiGIkKeJv6"
 

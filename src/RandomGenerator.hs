@@ -7,8 +7,6 @@ import Data.Vector as V
 getRandomDoubleVector :: StdGen -> Int -> V.Vector(Double)
 getRandomDoubleVector gen length = V.fromList (Prelude.take length (randoms gen :: [Double]))
 
---generate :: Int -> (Int -> a) -> Vector a
-
 getRandomDoubleMatrix :: Int -> Int -> StdGen -> V.Vector(V.Vector(Double))
 getRandomDoubleMatrix i j gen =
   let 

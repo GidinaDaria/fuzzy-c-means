@@ -19,6 +19,6 @@ executable Lab1
   main-is:             Main.hs
   other-modules:       ArgumentParse
   -- other-extensions:    
-  build-depends:       base >=4.8 && <4.9,random,vector
+  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,bytestring,text
   hs-source-dirs:      src
   default-language:    Haskell98
