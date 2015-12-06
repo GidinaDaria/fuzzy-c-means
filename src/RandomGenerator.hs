@@ -13,7 +13,10 @@ getRandomDoubleListOfLists :: StdGen -> Int -> Int -> [[Double]]
 getRandomDoubleListOfLists gen i j = S.chunksOf j (getRandomDoubleList gen i j)
 
 convertToVectorOfVectors :: [[Double]] -> V.Vector (V.Vector Double)
-convertToVectorOfVectors m = V.fromList(Prelude.map (\x -> V.fromList(x)) m)
+convertToVectorOfVectors m = V.fromList (Prelude.map (\x -> V.fromList(x)) m)
+
+convertToListOfLists :: V.Vector (V.Vector Double) -> [[Double]]
+convertToListOfLists m = V.toList (V.map (\x -> V.toList(x)) m)
 
 normalizeVectorOfVectors :: V.Vector (V.Vector Double) -> V.Vector (V.Vector Double)
 normalizeVectorOfVectors m = V.map (\x -> V.map (\elem -> elem/(V.sum x)) x) m

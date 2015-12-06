@@ -6,6 +6,7 @@ import Options.Applicative
 data Args = Args  { 
                     sourceFile :: String,
                     clustersCount :: Int,
+                    precision :: Double,
                     delimiter :: Char,
                     ignoringFirstRow :: Bool,
                     ignoringFirstCol :: Bool,
@@ -30,6 +31,14 @@ parseArgs = Args
             )
             <*> option auto
             (
+              long "precision"
+              <> short 'p'
+              <> metavar "DOUBLE"
+              <> help "Set precision of FCM-algorithm"
+              <> value 0.01
+            )
+            <*> option auto
+            (
               long "delimiter"
               <> short 'd'
               <> metavar "CHAR"
@@ -39,17 +48,17 @@ parseArgs = Args
             <*> flag False True
             ( 
               long "ignorefr"
-              <> short 'i'
+              <> short 'u'
               <> help "To ignore the first row use this flag. Default is not ignore"
             )
             <*> flag False True
             ( 
               long "ignorefc"
-              <> short 'o'
+              <> short 'i'
               <> help "To ignore the first column use this flag. Default is not ignore" 
             )
             <*> flag True False
             ( long "ignorelc"
-              <> short 'p'
+              <> short 'o'
               <> help "To not ignore the last column use this flag. Default is ignore" 
             )
