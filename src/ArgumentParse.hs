@@ -1,19 +1,16 @@
 module ArgumentParse
 where
-	
+
 import Options.Applicative
 
 data Args = Args  { 
                     sourceFile :: String,
                     clustersCount :: Int,
-                    ignoringFirstRow :: FirstRow,
-                    ignoringFirstCol :: FirstCol,
-                    ignoringLastCol :: LastCol
-                  }
-                  
-data FirstRow = FRIgnore | FRUse
-data FirstCol = FCIgnore | FCUse
-data LastCol = LCIgnore | LCUse
+                    delimiter :: Char,
+                    ignoringFirstRow :: Bool,
+                    ignoringFirstCol :: Bool,
+                    ignoringLastCol :: Bool
+                  } deriving (Show)
 
 parseArgs :: Parser Args
 parseArgs = Args
@@ -27,24 +24,32 @@ parseArgs = Args
             ( 
               long "cluster"
               <> short 'c'
-              <> metavar "COUNT"
+              <> metavar "INT"
               <> help "Set count of clusters" 
               <> value 2 
             )
-            <*> flag FRIgnore FRUse
-            ( 
-              long "first row"
-              <> short 'r'
-              <> help "Enable ignoring the first row"
+            <*> option auto
+            (
+              long "delimiter"
+              <> short 'd'
+              <> metavar "CHAR"
+              <> help "Det delimiter for CSV-file parsing"
+              <> value ','
             )
-            <*> flag FCIgnore FCUse
+            <*> flag False True
             ( 
-              long "first column"
-              <> short 't'
-              <> help "Enable ignoring the first column" 
+              long "ignorefr"
+              <> short 'i'
+              <> help "To ignore the first row use this flag. Default is not ignore"
             )
-            <*> flag LCIgnore LCUse
-            ( long "last column"
-              <> short 'y'
-              <> help "Enable ignoring the last column" 
+            <*> flag False True
+            ( 
+              long "ignorefc"
+              <> short 'o'
+              <> help "To ignore the first column use this flag. Default is not ignore" 
+            )
+            <*> flag True False
+            ( long "ignorelc"
+              <> short 'p'
+              <> help "To not ignore the last column use this flag. Default is ignore" 
             )

@@ -3,15 +3,29 @@ where
 
 import System.Random
 import Data.Vector as V
+import Data.List.Split as S
+import Data.List as L
 
-getRandomDoubleVector :: StdGen -> Int -> V.Vector(Double)
-getRandomDoubleVector gen length = V.fromList (Prelude.take length (randoms gen :: [Double]))
+getRandomDoubleList :: StdGen -> Int -> Int -> [Double]
+getRandomDoubleList gen i j = Prelude.take ((*) i j) (randoms gen :: [Double])
 
-getRandomDoubleMatrix :: Int -> Int -> StdGen -> V.Vector(V.Vector(Double))
-getRandomDoubleMatrix i j gen =
-  let 
-    genVector = getRandomDoubleVector gen j
-    sum = V.sum (genVector)
-    normalizedVector _ = V.map (\elem -> elem/(sum)) (genVector)
+getRandomDoubleListOfLists :: StdGen -> Int -> Int -> [[Double]]
+getRandomDoubleListOfLists gen i j = S.chunksOf j (getRandomDoubleList gen i j)
+
+convertToVectorOfVectors :: [[Double]] -> V.Vector (V.Vector Double)
+convertToVectorOfVectors m = V.fromList(Prelude.map (\x -> V.fromList(x)) m)
+
+normalizeVectorOfVectors :: V.Vector (V.Vector Double) -> V.Vector (V.Vector Double)
+normalizeVectorOfVectors m = V.map (\x -> V.map (\elem -> elem/(V.sum x)) x) m
+
+getRandomMatrix :: StdGen -> Int -> Int -> V.Vector (V.Vector Double)
+getRandomMatrix gen i j = normalizeVectorOfVectors (convertToVectorOfVectors (getRandomDoubleListOfLists gen i j))
+
+generateRandomCenters :: StdGen -> Int -> V.Vector (V.Vector Double) -> V.Vector (V.Vector Double)
+generateRandomCenters gen c objects = 
+  let
+    randomIndexes = Prelude.take c $ L.nub (randomRs (0, (V.length (objects)) - 1) gen :: [Int])
   in
-    V.generate i (normalizedVector)
+    --ifilter :: (Int -> a -> Bool) -> Vector a -> Vector a
+    --elem :: (Foldable t, Eq a) => a -> t a -> Bool
+    V.ifilter (\index _ -> L.elem index (randomIndexes)) objects
