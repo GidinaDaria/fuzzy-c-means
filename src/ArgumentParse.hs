@@ -3,14 +3,20 @@ where
 
 import Options.Applicative
 
+data DistanceMetric = Hamming | Evklid deriving(Eq, Show, Read)
+data InitialMatrix = RandomMatrix | RandomCenter deriving(Eq, Show, Read)
+
 data Args = Args  { 
                     sourceFile :: String,
+                    destFile :: String,
                     clustersCount :: Int,
                     precision :: Double,
                     delimiter :: Char,
                     ignoringFirstRow :: Bool,
                     ignoringFirstCol :: Bool,
-                    ignoringLastCol :: Bool
+                    ignoringLastCol :: Bool,
+                    metric :: DistanceMetric,
+                    initialMatrix :: InitialMatrix
                   } deriving (Show)
 
 parseArgs :: Parser Args
@@ -21,6 +27,14 @@ parseArgs = Args
               <> help "File with data" 
               <> value "butterfly.txt"
             ) 
+            <*> option str 
+            (
+                long "output" 
+                <> short 'v' 
+                <> metavar "FILE" 
+                <> help "Output file" 
+                <> value ""
+            )
             <*> option auto
             ( 
               long "cluster"
@@ -62,3 +76,19 @@ parseArgs = Args
               <> short 'o'
               <> help "To not ignore the last column use this flag. Default is ignore" 
             )
+            <*> option auto 
+            (
+                long "metric" 
+                <> short 'm' 
+                <> metavar "NAME" 
+                <> help "Distance metric Hamming, Evklid (default Evklid)" 
+                <> value Evklid
+            )
+            <*> option auto 
+            (
+                long "initialMatrix" 
+                <> short 'n' 
+                <> metavar "NAME" 
+                <> help "Supply Matrix: RandomMatrix, RandomCenter(default RandomMatrix)" 
+                <> value RandomMatrix
+            )  

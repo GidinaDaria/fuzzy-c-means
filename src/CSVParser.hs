@@ -2,7 +2,6 @@ module CSVParser
 where
 
 import Data.CSV.Conduit as CND
---import Data.ByteString as BS
 import Data.Text (Text)
 import qualified Data.Vector as V
 import qualified Data.ByteString as BS
