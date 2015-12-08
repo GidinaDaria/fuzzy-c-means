@@ -27,13 +27,13 @@ main = do
   case t of 
     Left e -> putStrLn $ "Error during reading csv file: " ++ show e
     Right csvData -> do
-    
       --filter csvData
       parseResult <- try $ parseCsv (convertCsvArgs parseArgs) csvData :: IO (Either SomeException (V.Vector (V.Vector Double)))
       case parseResult of
         Left e -> putStrLn $ "Error during filtering data from csv: " ++ show e
         Right objects -> do
         
+          --Prelude.mapM_ (putStrLn . show) objects
           let result = FCM.fcmMain gen (clustersCount parseArgs) (precision parseArgs) objects (initialMatrix parseArgs) (metric parseArgs) 
           if (destFile parseArgs) == ""
             then
@@ -44,6 +44,5 @@ main = do
               writingStatus <- try $ writeResultToFile :: IO (Either SomeException ())
               case writingStatus of
                 Left e -> putStrLn $ "Error during writing results of clusterization: " ++ show e
-                Right _ -> putStrLn "Finished"
-              
-            
+                Right _ -> putStrLn "Finished" 
+                

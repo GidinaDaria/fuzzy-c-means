@@ -25,7 +25,7 @@ parseArgs = Args
             ( 
               metavar "FILE" 
               <> help "File with data" 
-              <> value "butterfly.txt"
+              <> value "examples/butterfly.txt"
             ) 
             <*> option str 
             (

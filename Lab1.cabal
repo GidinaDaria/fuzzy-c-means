@@ -19,7 +19,7 @@ executable Lab1
   main-is:             Main.hs
   other-modules:       ArgumentParse
   -- other-extensions:    
-  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,bytestring,text,split
+  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,split
   hs-source-dirs:      src
   default-language:    Haskell98
   
@@ -27,6 +27,6 @@ executable Tests
   main-is:             Test.hs
   -- other-modules:       
   -- other-extensions:    
-  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,bytestring,text,split,HUnit
+  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,split,HUnit
   hs-source-dirs:      src
   default-language:    Haskell98
