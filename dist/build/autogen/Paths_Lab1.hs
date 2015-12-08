@@ -25,13 +25,13 @@ getBinDir :: IO FilePath
 getBinDir = getPrefixDirRel bindirrel
 
 getLibDir :: IO FilePath
-getLibDir = getPrefixDirRel "x86_64-windows-ghc-7.10.2\\Lab1-0.1.0.0-Ls1evAx2GHH8mP3MFpTdRP"
+getLibDir = getPrefixDirRel "x86_64-windows-ghc-7.10.2\\Lab1-0.1.0.0-3QESLpmt508CJUwEDYGjYe"
 
 getDataDir :: IO FilePath
 getDataDir =  catchIO (getEnv "Lab1_datadir") (\_ -> getPrefixDirRel "x86_64-windows-ghc-7.10.2\\Lab1-0.1.0.0")
 
 getLibexecDir :: IO FilePath
-getLibexecDir = getPrefixDirRel "Lab1-0.1.0.0-Ls1evAx2GHH8mP3MFpTdRP"
+getLibexecDir = getPrefixDirRel "Lab1-0.1.0.0-3QESLpmt508CJUwEDYGjYe"
 
 getSysconfDir :: IO FilePath
 getSysconfDir = getPrefixDirRel "etc"

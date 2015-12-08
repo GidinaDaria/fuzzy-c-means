@@ -56,6 +56,13 @@
   (major1) == 0 && (major2) <  11 || \
   (major1) == 0 && (major2) == 11 && (minor) <= 0)
 
+/* package HUnit-1.2.5.2 */
+#define VERSION_HUnit "1.2.5.2"
+#define MIN_VERSION_HUnit(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 5)
+
 /* tool alex-3.1.4 */
 #define TOOL_VERSION_alex "3.1.4"
 #define MIN_TOOL_VERSION_alex(major1,major2,minor) (\
@@ -126,5 +133,5 @@
   (major1) == 2 && (major2) <  22 || \
   (major1) == 2 && (major2) == 22 && (minor) <= 0)
 
-#define CURRENT_PACKAGE_KEY "Lab1_Ls1evAx2GHH8mP3MFpTdRP"
+#define CURRENT_PACKAGE_KEY "Lab1_3QESLpmt508CJUwEDYGjYe"
 

@@ -2,9 +2,7 @@ module CSVParser
 where
 
 import Data.CSV.Conduit as CND
-import Data.Text (Text)
 import qualified Data.Vector as V
-import qualified Data.ByteString as BS
 import Data.List as L
 
 data CSVSettings = CSVSettings  { 
@@ -36,6 +34,6 @@ filterCsvLastCol ilc vl = if ilc then V.map (\x -> L.init(x)) vl else vl
 decodeCsv :: V.Vector (Row String) -> V.Vector (V.Vector Double)
 decodeCsv a = V.map (\y -> V.fromList(L.map (\x -> (read(x)::Double)) y)) a 
 
-parseCsv :: CSVParser.CSVSettings -> V.Vector (Row String) -> V.Vector (V.Vector Double)
-parseCsv settings vl = decodeCsv (filterCsv (ignoringFirstRowCsv settings) (ignoringFirstColCsv settings) (ignoringLastColCsv settings) vl)
+parseCsv :: CSVParser.CSVSettings -> V.Vector (Row String) -> IO (V.Vector (V.Vector Double))
+parseCsv settings vl = return $ decodeCsv (filterCsv (ignoringFirstRowCsv settings) (ignoringFirstColCsv settings) (ignoringLastColCsv settings) vl)
 

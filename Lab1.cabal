@@ -6,7 +6,7 @@ version:             0.1.0.0
 -- synopsis:            
 -- description:         
 -- license:             
-license-file:        LICENSE
+-- license-file:        LICENSE
 author:              Darya
 maintainer:          gaidina_daria@tut.by
 -- copyright:           
@@ -20,5 +20,13 @@ executable Lab1
   other-modules:       ArgumentParse
   -- other-extensions:    
   build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,bytestring,text,split
+  hs-source-dirs:      src
+  default-language:    Haskell98
+  
+executable Tests
+  main-is:             Test.hs
+  -- other-modules:       
+  -- other-extensions:    
+  build-depends:       base >=4.8 && <4.9,random,vector,optparse-applicative,csv-conduit,bytestring,text,split,HUnit
   hs-source-dirs:      src
   default-language:    Haskell98
